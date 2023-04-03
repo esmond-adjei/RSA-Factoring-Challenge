@@ -5,7 +5,7 @@
 void factorize(long long n, long long *p, long long *q) {
     *p = 0;
     *q = 0;
-    for (long long i = 2; i <= n; i++) {
+    for (long long i = 2; i * i <= n; i++) {
         if (n % i == 0) {
             *p = i;
             *q = n / i;
