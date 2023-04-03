@@ -3,15 +3,15 @@
 #include <math.h>
 
 void factorize(long long n, long long *p, long long *q) {
-    for (int i = 2; i <= sqrt(n); i++) {
+    *p = 0;
+    *q = 0;
+    for (int i = 2; i <= n; i++) {
         if (n % i == 0) {
             *p = i;
             *q = n / i;
             return;
         }
     }
-    *p = 0;
-    *q = 0;
 }
 
 int main(int argc, char *argv[]) {
@@ -26,11 +26,13 @@ int main(int argc, char *argv[]) {
     }
     char line[1024];
     while (fgets(line, sizeof(line), fp)) {
-        long long n = atoi(line);
+        long long n = atoll(line);
         long long p, q;
+	p = 0;
+	q = 0;
         factorize(n, &p, &q);
         if (p != 0 && q != 0) {
-            printf("%lld=%lld*%lld\n", n, p, q);
+            printf("%lld=%lld*%lld\n", n, q, p);
         } else {
             printf("%lld is prime\n", n);
         }
